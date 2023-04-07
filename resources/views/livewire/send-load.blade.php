@@ -1,4 +1,4 @@
-<div class="col-xxl-4 col-md-4">
+<div class="col-xxl-4 col-lg-6 col-md-4">
     <div class="card info-card revenue-card">
         <div class="filter">
             <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>

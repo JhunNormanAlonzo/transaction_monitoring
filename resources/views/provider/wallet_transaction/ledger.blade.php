@@ -24,6 +24,9 @@
         <!-- Total Cash in Card -->
         <livewire:cash-in></livewire:cash-in>
 
+        <!-- Total Rebate in Card -->
+        <livewire:rebate></livewire:rebate>
+
 
         <div class="col-12">
             <div class="card recent-sales overflow-auto">

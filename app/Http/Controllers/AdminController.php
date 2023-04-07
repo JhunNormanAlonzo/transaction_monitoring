@@ -109,8 +109,6 @@ class AdminController extends Controller
             }
 
             return redirect()->back()->with('message', 'Request declined successfully! '.$status);
-
-
         }
     }
 
@@ -133,7 +131,7 @@ class AdminController extends Controller
         $to_rebate = [
             'access_provider_id' => $to_update->access_provider_id,
             'wallet_transaction_type_id' => $wallet_transaction_type_id,
-            'trans_reference' => 'REBATE'.$to_update->trans_reference,
+            'trans_reference' => 'REBATE-'.$to_update->trans_reference,
             'load_type_id' => $load_type_id,
             'trans_amount' => $amount_rebate,
             'approval_user_id' => auth()->user()->id,

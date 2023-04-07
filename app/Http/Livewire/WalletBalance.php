@@ -13,21 +13,27 @@ class WalletBalance extends Component
     public $filterTag = "Today";
     public $wallet_balance;
 
-    public function today(){
-        $this->filter = Carbon::parse(Carbon::now());
-        $this->filterTag = "Today";
-        $this->wallet_balance = ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
-            ->where('status', 'approved')
-            ->where('trans_date', 'like', '%'.$this->filter.'%')
-            ->orWhere('status', 'LOADED')
-            ->sum('amount');
-    }
+//    public function today(){
+//        $this->filter = Carbon::parse(Carbon::now());
+//        $this->filterTag = "Today";
+//        $this->wallet_balance = ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
+//            ->where(function($query){
+//                $query->where('status', 'approved')
+//                    ->orWhere('status', 'LOADED')
+//                    ->orWhere('status', 'rebate');
+//            })
+//            ->where('trans_date', 'like', '%'.$this->filter.'%')
+//            ->sum('amount');
+//    }
 
     public function mount(){
         $this->wallet_balance = ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
-            ->where('status', 'approved')
-            ->orWhere('status', 'LOADED')
-            ->where('trans_date', 'like', '%'.$this->filter.'%')
+            ->where(function($query){
+                $query->where('status', 'approved')
+                    ->orWhere('status', 'LOADED')
+                    ->orWhere('status', 'rebate');
+            })
+//            ->where('trans_date', 'like', '%'.$this->filter.'%')
             ->sum('amount');
     }
 

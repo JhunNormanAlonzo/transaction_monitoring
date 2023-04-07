@@ -16,8 +16,10 @@ class CashIn extends Component
         $this->filter = Carbon::parse(Carbon::now());
 
         $this->cash_in = ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
-            ->where('status', 'approved')
-            ->orWhere('status', 'pending')
+            ->where(function($query){
+                $query->where('status', 'approved')
+                    ->orWhere('status', 'pending');
+            })
             ->sum('amount');
 
         $this->filterTag = "All";
@@ -27,9 +29,11 @@ class CashIn extends Component
         $this->filter = Carbon::now()->format('Y-m-d');
 
         $this->cash_in =  ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
-            ->where('status', 'approved')
+            ->where(function ($query){
+                $query->where('status', 'approved')
+                    ->orWhere('status', 'pending');
+            })
             ->where('trans_date', 'like', '%'.$this->filter.'%')
-            ->orWhere('status', 'pending')
             ->sum('amount');
 
         $this->filterTag = "Today";
@@ -39,9 +43,11 @@ class CashIn extends Component
         $this->filter = Carbon::now()->format('Y-m');
 
         $this->cash_in =  ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
-            ->where('status', 'approved')
+            ->where(function($query){
+                $query->where('status', 'approved')
+                    ->orWhere('status', 'pending');
+            })
             ->where('trans_date', 'like', '%'.$this->filter.'%')
-            ->orWhere('status', 'pending')
             ->sum('amount');
 
         $this->filterTag = "Month";
@@ -51,9 +57,11 @@ class CashIn extends Component
         $this->filter = Carbon::now()->format('Y');
 
         $this->cash_in =  ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
-            ->where('status', 'approved')
+            ->where(function($query){
+                $query->where('status', 'approved')
+                    ->orWhere('status', 'pending');
+            })
             ->where('trans_date', 'like', '%'.$this->filter.'%')
-            ->orWhere('status', 'pending')
             ->sum('amount');
 
         $this->filterTag = "Year";
@@ -61,8 +69,10 @@ class CashIn extends Component
 
     public function mount(){
         $this->cash_in = ProviderWalletLedger::where('access_provider_id', auth()->user()->access_providers->id)
-            ->where('status', 'approved')
-            ->orWhere('status', 'pending')
+            ->where(function($query){
+                $query->where('status', 'approved')
+                    ->orWhere('status', 'pending');
+            })
             ->sum('amount');
     }
 
