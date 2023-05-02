@@ -1,14 +1,7 @@
-after cloning <br>
-copy the .env.example <br>
-add .env file and paste the content of .env.example <br>
-you can config by your own configuration <br> 
+hi sir PovilasKorop, 
 
-<b> OR </b> </br> 
+i wonder about the code review in your laraveldaily content
+and so much appreciated if you notice me.
 
-you can decrypt env <br>
-env:decrypt --key=base64:hh2aWRKpt9HDwnm7+QcLw0RQ81okfbpq+wHrB9Tn53o=  <br>
-
---commands <br>
-composer update <br>
-
-php artisan config:cache <br>
+my app is working but i dont know if there is part 
+that need to optimize or to change.
